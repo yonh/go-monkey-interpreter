@@ -32,3 +32,17 @@ const (
 	FUNCTION = "FUNCTION"
 	LET      = "LET"
 )
+
+// 关键字列表
+var keywords = map[string]TokenType{
+	"fn":  FUNCTION,
+	"let": LET,
+}
+
+// 方法会根据关键字表赖查找字符串是否为关键字，如果是则返回关键字的TokenType,否则为IDENT
+func LookupIdent(ident string) TokenType {
+	if tok, ok := keywords[ident]; ok {
+		return tok
+	}
+	return IDENT
+}
